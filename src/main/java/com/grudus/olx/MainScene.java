@@ -61,12 +61,16 @@ public class MainScene extends Scene {
     private void addListeners() {
 
         okButton.setOnAction(e -> {
-            output.setText("");
+            output.setText("Init process...");
             task = new OutputWriterTask(output, getSecondsToRefresh(), urlField.getText());
             new Thread(task).start();
+            output.setText("Searching for offers...\n" + output.getText());
         });
 
-        cancelButton.setOnAction(e -> task.stop());
+        cancelButton.setOnAction(e -> {
+            System.out.println("Stopping process...");
+            task.stop();
+        });
     }
 
     private Integer getSecondsToRefresh() {

@@ -9,6 +9,19 @@ repositories {
     mavenCentral()
 }
 
+
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Implementation-Title': 'Olx',
+                'Implementation-Version': version,
+                'Main-Class': 'com.grudus.olx.Window',
+                'Created-By': 'grudus'
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
 dependencies {
     compile 'org.seleniumhq.selenium:selenium-java:2.41.0'
     compile 'org.seleniumhq.selenium:selenium-chrome-driver:2.23.0'
