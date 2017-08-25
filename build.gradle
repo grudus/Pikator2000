@@ -22,7 +22,22 @@ task fatJar(type: Jar) {
     with jar
 }
 
+task copyTask(type: Copy) {
+    println "Copying configuration files"
+    def configDir = jar.archivePath.path + '/..'
+
+    from 'config.json'
+    into configDir
+
+    from 'chromedriver'
+    into configDir
+}
+
+fatJar.dependsOn copyTask
+
 dependencies {
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.9.0'
+
     compile 'org.seleniumhq.selenium:selenium-java:2.41.0'
     compile 'org.seleniumhq.selenium:selenium-chrome-driver:2.23.0'
     compile 'com.jfoenix:jfoenix:1.7.0'
