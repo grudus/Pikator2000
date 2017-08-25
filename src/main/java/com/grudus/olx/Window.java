@@ -5,6 +5,10 @@ import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
+import java.io.File;
+
+import static java.lang.System.setProperty;
+
 public class Window extends Application {
     private MainScene scene;
 
@@ -25,6 +29,7 @@ public class Window extends Application {
     }
 
     public static void main(String[] args) {
+        setProperty("webdriver.chrome.driver", new File("chromedriver").getAbsolutePath());
         launch(args);
     }
 }

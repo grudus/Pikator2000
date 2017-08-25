@@ -30,8 +30,10 @@ public class MainScene extends Scene {
     }
 
     public void close() {
-        if (task != null)
+        if (task != null) {
+            task.stop();
             task.cancel();
+        }
 
     }
 
