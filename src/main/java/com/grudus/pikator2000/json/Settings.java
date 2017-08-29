@@ -1,4 +1,4 @@
-package com.grudus.olx.json;
+package com.grudus.pikator2000.json;
 
 public class Settings {
     private String url;

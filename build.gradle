@@ -1,4 +1,4 @@
-group 'com.grudus.olx'
+group 'com.grudus.pikator2000'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
@@ -12,9 +12,9 @@ repositories {
 
 task fatJar(type: Jar) {
     manifest {
-        attributes 'Implementation-Title': 'Olx',
+        attributes 'Implementation-Title': 'Pikator2000',
                 'Implementation-Version': version,
-                'Main-Class': 'com.grudus.olx.Window',
+                'Main-Class': 'com.grudus.pikator2000.Window',
                 'Created-By': 'grudus'
     }
     baseName = project.name + '-all'

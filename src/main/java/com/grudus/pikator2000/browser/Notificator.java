@@ -1,4 +1,4 @@
-package com.grudus.olx.browser;
+package com.grudus.pikator2000.browser;
 
 import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;

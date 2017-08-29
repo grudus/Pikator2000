@@ -1,7 +1,7 @@
-package com.grudus.olx;
+package com.grudus.pikator2000;
 
-import com.grudus.olx.json.JsonIO;
-import com.grudus.olx.json.Settings;
+import com.grudus.pikator2000.json.JsonIO;
+import com.grudus.pikator2000.json.Settings;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;

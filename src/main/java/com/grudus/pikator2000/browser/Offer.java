@@ -1,4 +1,4 @@
-package com.grudus.olx.browser;
+package com.grudus.pikator2000.browser;
 
 public class Offer {
     private final String title;

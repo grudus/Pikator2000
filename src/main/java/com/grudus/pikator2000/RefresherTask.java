@@ -1,12 +1,12 @@
-package com.grudus.olx;
+package com.grudus.pikator2000;
 
-import com.grudus.olx.browser.WebDriverRefresher;
+import com.grudus.pikator2000.browser.WebDriverRefresher;
 import javafx.concurrent.Task;
 import javafx.scene.control.TextArea;
 
 import java.time.LocalTime;
 
-import static com.grudus.olx.browser.WebsiteType.OLX;
+import static com.grudus.pikator2000.browser.WebsiteType.OLX;
 import static java.time.LocalDateTime.now;
 
 public class RefresherTask extends Task<Void> {

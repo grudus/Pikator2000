@@ -1,6 +1,6 @@
-package com.grudus.olx;
+package com.grudus.pikator2000;
 
-import com.grudus.olx.json.JsonIO;
+import com.grudus.pikator2000.json.JsonIO;
 import javafx.application.Application;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;

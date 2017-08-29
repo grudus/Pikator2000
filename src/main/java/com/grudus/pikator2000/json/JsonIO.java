@@ -1,12 +1,12 @@
-package com.grudus.olx.json;
+package com.grudus.pikator2000.json;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.grudus.olx.browser.WebDriverRefresher;
+import com.grudus.pikator2000.browser.WebDriverRefresher;
 
 import java.io.File;
 import java.io.IOException;
 
-import static com.grudus.olx.RefresherTask.DEFAULT_REFRESH;
+import static com.grudus.pikator2000.RefresherTask.DEFAULT_REFRESH;
 
 public class JsonIO {
     private final File file;
