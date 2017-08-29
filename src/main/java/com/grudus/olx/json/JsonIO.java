@@ -1,11 +1,12 @@
 package com.grudus.olx.json;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.grudus.olx.OutputWriterTask;
-import com.grudus.olx.browser.Refresher;
+import com.grudus.olx.browser.WebDriverRefresher;
 
 import java.io.File;
 import java.io.IOException;
+
+import static com.grudus.olx.RefresherTask.DEFAULT_REFRESH;
 
 public class JsonIO {
     private final File file;
@@ -22,7 +23,7 @@ public class JsonIO {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return new Settings(Refresher.DEFAULT_URL, OutputWriterTask.DEFAULT_REFRESH);
+        return new Settings(WebDriverRefresher.DEFAULT_URL, DEFAULT_REFRESH);
     }
 
     public void save(Settings settings) {

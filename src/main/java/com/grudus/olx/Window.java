@@ -11,17 +11,16 @@ import java.io.File;
 import static java.lang.System.setProperty;
 
 public class Window extends Application {
-    public static final String CONFIG_FILE = "config.json";
-    public static final String DRIVER_FILE = "chromedriver";
+    private static final String CONFIG_FILE = "config.json";
+    private static final String DRIVER_FILE = "chromedriver";
 
     private MainScene scene;
-
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         scene = new MainScene(new StackPane(), 800, 600, new JsonIO(CONFIG_FILE));
 
-        primaryStage.setTitle("Olx search");
+        primaryStage.setTitle("Pikator 2000");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
@@ -34,6 +33,7 @@ public class Window extends Application {
 
     public static void main(String[] args) {
         try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             assertFiles();
             setProperty("webdriver.chrome.driver", new File(DRIVER_FILE).getAbsolutePath());
             launch(args);
@@ -49,7 +49,6 @@ public class Window extends Application {
 
     private static void assertFile(String path) throws Exception {
         if (!new File(path).exists()) {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             JOptionPane.showMessageDialog(null, "Cannot find file " + path, "ERROR", JOptionPane.ERROR_MESSAGE);
             throw new Exception("Cannot find file " + path);
         }

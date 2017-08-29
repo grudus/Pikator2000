@@ -10,40 +10,35 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
-import static java.lang.Integer.valueOf;
-
-public class MainScene extends Scene {
-    private final JsonIO jsonIO;
-    private final VBox layout;
+class MainScene extends Scene {
+    private final MainSceneController controller;
 
     private TextField urlField;
     private TextField secondsField;
     private Button okButton;
     private Button cancelButton;
     private TextArea output;
-    private OutputWriterTask task;
 
-    public MainScene(Pane pane, int width, int height, JsonIO jsonIO) {
+    MainScene(Pane pane, int width, int height, JsonIO jsonIO) {
         super(pane, width, height);
-        this.jsonIO = jsonIO;
-        layout = new VBox(10);
-        pane.getChildren().add(layout);
-        initViews();
+
+        controller = new MainSceneController(jsonIO);
+
+        initViews(pane);
         addListeners();
     }
 
-    public void close() {
-        if (task != null) {
-            task.stop();
-            task.cancel();
-        }
-
+    void close() {
+        controller.close();
     }
 
-    private void initViews() {
+    private void initViews(Pane pane) {
+        VBox layout = new VBox(10);
+        pane.getChildren().add(layout);
+
         Insets padding = new Insets(10, 0, 10, 0);
         layout.setPadding(new Insets(20, 20, 20, 20));
-        Settings settings = jsonIO.read();
+        Settings settings = controller.readSettings();
 
         urlField = new TextField();
         urlField.setPromptText("Olx url");
@@ -66,35 +61,7 @@ public class MainScene extends Scene {
     }
 
     private void addListeners() {
-
-        okButton.setOnAction(e -> {
-            output.setText("Init process...");
-            task = new OutputWriterTask(output, getSecondsToRefresh(), urlField.getText());
-            new Thread(task).start();
-            output.setText("Searching for offers...\n" + output.getText());
-            updateSettings();
-        });
-
-        cancelButton.setOnAction(e -> {
-            output.setText("Stopping process...\n" + output.getText());
-            task.stop();
-            output.setText("Stopped\n" + output.getText());
-        });
-    }
-
-    private void updateSettings() {
-        Settings settings = new Settings();
-        settings.setUrl(urlField.getText());
-        settings.setSeconds(getSecondsToRefresh());
-        jsonIO.save(settings);
-    }
-
-    private Integer getSecondsToRefresh() {
-        return invalidTime() ? OutputWriterTask.DEFAULT_REFRESH : valueOf(secondsField.getText());
-    }
-
-    private boolean invalidTime() {
-        String text = secondsField.getText();
-        return text == null || !text.matches("\\d+");
+        okButton.setOnAction(e -> controller.onSubmit(output, urlField.getText(), secondsField.getText()));
+        cancelButton.setOnAction(e -> controller.onCancel(output));
     }
 }

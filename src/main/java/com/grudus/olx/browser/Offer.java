@@ -1,28 +1,38 @@
 package com.grudus.olx.browser;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-
 public class Offer {
-    private String title;
-    private String place;
-    private String price;
+    private final String title;
+    private final String place;
+    private final String price;
 
-    private final WebDriver driver;
-
-    public Offer(WebDriver driver) {
-        this.driver = driver;
-        update();
+    public Offer(String title, String place, String price) {
+        this.title = title;
+        this.place = place;
+        this.price = price;
     }
 
-    public Offer update() {
-        this.title = driver.findElement(By.xpath("//*[@id=\"offers_table\"]/tbody/tr[2]/td/table/tbody/tr[1]/td[2]/div/h3/a/strong")).getText();
-        this.place = driver.findElement(By.xpath("//*[@id=\"offers_table\"]/tbody/tr[2]/td/table/tbody/tr[2]/td[1]/div/p[1]/small/span")).getText();
-        this.price = driver.findElement(By.xpath("//*[@id=\"offers_table\"]/tbody/tr[2]/td/table/tbody/tr[1]/td[3]/div/p/strong")).getText();
-        return this;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Offer offer = (Offer) o;
+
+        if (title != null ? !title.equals(offer.title) : offer.title != null) return false;
+        if (place != null ? !place.equals(offer.place) : offer.place != null) return false;
+        return price != null ? price.equals(offer.price) : offer.price == null;
     }
 
-    public OfferDto toDto() {
-        return new OfferDto(title, place, price);
+    @Override
+    public int hashCode() {
+        int result = title != null ? title.hashCode() : 0;
+        result = 31 * result + (place != null ? place.hashCode() : 0);
+        result = 31 * result + (price != null ? price.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("{%s :: %s :: %s}", title, price, place);
     }
 }
