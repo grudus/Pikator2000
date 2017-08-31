@@ -40,7 +40,7 @@ class MainScene extends Scene {
         layout.setPadding(new Insets(20, 20, 20, 20));
         Settings settings = controller.readSettings();
 
-        urlTextFields = new UrlTextFields(settings.getUrl());
+        urlTextFields = new UrlTextFields(settings.getUrl().get(0));
 
         secondsField = new TextField();
         secondsField.setPromptText("Seconds to refresh");
@@ -58,7 +58,7 @@ class MainScene extends Scene {
     }
 
     private void addListeners() {
-        okButton.setOnAction(e -> controller.onSubmit(output, urlTextFields.getUrls().get(0), secondsField.getText()));
+        okButton.setOnAction(e -> controller.onSubmit(output, urlTextFields.getUrls(), secondsField.getText()));
         cancelButton.setOnAction(e -> controller.onCancel(output));
     }
 }

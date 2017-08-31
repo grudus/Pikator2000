@@ -4,9 +4,10 @@ import com.grudus.pikator2000.browser.WebDriverRefresher;
 import javafx.concurrent.Task;
 import javafx.scene.control.TextArea;
 
-import java.time.LocalTime;
+import java.util.List;
 
 import static java.time.LocalDateTime.now;
+import static java.util.stream.Collectors.toList;
 
 public class RefresherTask extends Task<Void> {
     public static final int DEFAULT_REFRESH = 30;
@@ -17,10 +18,10 @@ public class RefresherTask extends Task<Void> {
 
     private volatile boolean running;
 
-    RefresherTask(TextArea output, int secondsToRefresh, String url) {
+    RefresherTask(TextArea output, int secondsToRefresh, List<String> urls) {
         this.output = output;
         this.secondsToRefresh = secondsToRefresh;
-        this.webDriverRefresher = new WebDriverRefresher(getUrl(url));
+        this.webDriverRefresher = new WebDriverRefresher(getUrls(urls));
         running = true;
     }
 
@@ -46,9 +47,15 @@ public class RefresherTask extends Task<Void> {
     }
 
     private String getFormattedOffer() {
-        return String.format("%s - %s\n", LocalTime.now(), webDriverRefresher.getOffer());
+        return OutputFormatter.format(webDriverRefresher.getOffers());
     }
 
+    private List<String> getUrls(List<String> urls) {
+        return urls.stream()
+                .map(this::getUrl)
+                .distinct()
+                .collect(toList());
+    }
     private String getUrl(String url) {
         return isEmpty(url) ? WebDriverRefresher.DEFAULT_URL : url;
     }

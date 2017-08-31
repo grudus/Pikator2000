@@ -1,6 +1,9 @@
 package com.grudus.pikator2000.browser;
 
+import org.openqa.selenium.WebDriver;
+
 public interface OfferExtractor {
     OfferExtractor update();
     Offer extract();
+    WebDriver getDriver();
 }

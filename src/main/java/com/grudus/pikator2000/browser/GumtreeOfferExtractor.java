@@ -28,4 +28,9 @@ public class GumtreeOfferExtractor implements OfferExtractor {
     public Offer extract() {
         return new Offer(title, place, price);
     }
+
+    @Override
+    public WebDriver getDriver() {
+        return driver;
+    }
 }
