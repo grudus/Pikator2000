@@ -13,7 +13,7 @@ import javafx.scene.layout.VBox;
 class MainScene extends Scene {
     private final MainSceneController controller;
 
-    private TextField urlField;
+    private UrlTextFields urlTextFields;
     private TextField secondsField;
     private Button okButton;
     private Button cancelButton;
@@ -40,10 +40,7 @@ class MainScene extends Scene {
         layout.setPadding(new Insets(20, 20, 20, 20));
         Settings settings = controller.readSettings();
 
-        urlField = new TextField();
-        urlField.setPromptText("Olx url");
-        urlField.setText(settings.getUrl());
-        urlField.setPadding(padding);
+        urlTextFields = new UrlTextFields(settings.getUrl());
 
         secondsField = new TextField();
         secondsField.setPromptText("Seconds to refresh");
@@ -57,11 +54,11 @@ class MainScene extends Scene {
         output.setPromptText("Here will be output");
         output.setPrefRowCount(20);
 
-        layout.getChildren().addAll(urlField, secondsField, okButton, cancelButton, output);
+        layout.getChildren().addAll(urlTextFields, secondsField, okButton, cancelButton, output);
     }
 
     private void addListeners() {
-        okButton.setOnAction(e -> controller.onSubmit(output, urlField.getText(), secondsField.getText()));
+        okButton.setOnAction(e -> controller.onSubmit(output, urlTextFields.getUrls().get(0), secondsField.getText()));
         cancelButton.setOnAction(e -> controller.onCancel(output));
     }
 }
