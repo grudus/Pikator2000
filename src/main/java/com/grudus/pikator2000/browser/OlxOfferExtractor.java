@@ -13,7 +13,6 @@ public class OlxOfferExtractor implements OfferExtractor {
 
     public OlxOfferExtractor(WebDriver driver) {
         this.driver = driver;
-        update();
     }
 
     @Override

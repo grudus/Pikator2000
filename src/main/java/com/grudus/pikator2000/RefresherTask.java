@@ -6,7 +6,6 @@ import javafx.scene.control.TextArea;
 
 import java.time.LocalTime;
 
-import static com.grudus.pikator2000.browser.WebsiteType.OLX;
 import static java.time.LocalDateTime.now;
 
 public class RefresherTask extends Task<Void> {
@@ -21,7 +20,7 @@ public class RefresherTask extends Task<Void> {
     RefresherTask(TextArea output, int secondsToRefresh, String url) {
         this.output = output;
         this.secondsToRefresh = secondsToRefresh;
-        this.webDriverRefresher = new WebDriverRefresher(getUrl(url), OLX);
+        this.webDriverRefresher = new WebDriverRefresher(getUrl(url));
         running = true;
     }
 

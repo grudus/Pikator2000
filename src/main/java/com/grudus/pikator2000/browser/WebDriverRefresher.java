@@ -12,15 +12,15 @@ public class WebDriverRefresher {
     private final OfferExtractor offerExtractor;
     private Offer current;
 
-    public WebDriverRefresher(String url, WebsiteType type) {
+    public WebDriverRefresher(String url) {
         this.url = url;
         this.webDriver = new ChromeDriver();
-        this.offerExtractor = OfferExtractorFactory.create(type, webDriver);
+        this.offerExtractor = OfferExtractorFactory.create(WebsiteType.convert(url).get(), webDriver);
     }
 
     public WebDriverRefresher initBrowser() {
         webDriver.get(url);
-        this.current = offerExtractor.extract();
+        this.current = offerExtractor.update().extract();
         return this;
     }
 
