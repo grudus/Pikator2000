@@ -14,12 +14,12 @@ public class Settings {
     public Settings() {
     }
 
-    public List<String> getUrl() {
+    public List<String> getUrls() {
         return urls;
     }
 
-    public void setUrl(List<String> url) {
-        this.urls = url;
+    public void setUrls(List<String> urls) {
+        this.urls = urls;
     }
 
     public Integer getSeconds() {

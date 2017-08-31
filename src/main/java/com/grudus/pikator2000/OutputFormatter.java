@@ -11,12 +11,13 @@ public class OutputFormatter {
         StringBuilder builder = new StringBuilder(LocalTime.now().toString())
                 .append(" - ");
         final int size = offers.size();
+        final int offsetSize = builder.toString().length();
 
         for (int i = 0; i < size; i++) {
             Offer offer = offers.get(i);
-            builder.append(offer);
+            builder.append(offer).append("\n");
             if (i < size - 1)
-                builder.append("\n\t\t");
+                builder.append(String.format("%" + offsetSize + "s", ""));
         }
         return builder.toString();
     }

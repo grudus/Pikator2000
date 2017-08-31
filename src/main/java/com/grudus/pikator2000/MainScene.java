@@ -40,7 +40,7 @@ class MainScene extends Scene {
         layout.setPadding(new Insets(20, 20, 20, 20));
         Settings settings = controller.readSettings();
 
-        urlTextFields = new UrlTextFields(settings.getUrl().get(0));
+        urlTextFields = new UrlTextFields(settings.getUrls());
 
         secondsField = new TextField();
         secondsField.setPromptText("Seconds to refresh");

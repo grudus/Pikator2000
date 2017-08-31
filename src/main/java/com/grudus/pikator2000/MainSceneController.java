@@ -44,7 +44,7 @@ class MainSceneController {
 
     private void updateSettings(List<String> urls, String seconds) {
         Settings settings = new Settings();
-        settings.setUrl(urls);
+        settings.setUrls(urls);
         settings.setSeconds(getSecondsToRefresh(seconds));
         jsonIO.save(settings);
     }
