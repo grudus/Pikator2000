@@ -36,7 +36,7 @@ class MainSceneController {
 
     void onCancel(TextArea logger) {
         logger.setText("Stopping process...\n" + logger.getText());
-        task.stop();
+        if(task != null) task.stop();
         logger.setText("Stopped\n" + logger.getText());
     }
 
