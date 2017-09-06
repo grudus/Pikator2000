@@ -7,6 +7,7 @@ import javafx.stage.Stage;
 
 import javax.swing.*;
 import java.io.File;
+import java.util.Objects;
 
 import static java.lang.System.setProperty;
 
@@ -33,7 +34,7 @@ public class Window extends Application {
     public static void main(String[] args) {
         try {
             String driverFileName = DriverDetector.INSTANCE.detectFileName();
-            assert(driverFileName != null); //xD
+            Objects.requireNonNull(driverFileName);
 
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             assertFiles(driverFileName);
