@@ -1,4 +1,5 @@
 # Pikator2000
+![license](https://img.shields.io/github/license/grudus/Pikator2000.svg?style=flat-square)
 
 A desktop application for refreshing offers on popular offer websites.
 
