@@ -14,6 +14,9 @@ Run `gradle fatJar`, then run the jar in `build/libs`.
 
 By default Pikator uses windows' chromedriver. To run it on another platform you'll have to [download it](https://sites.google.com/a/chromium.org/chromedriver/downloads) and replace existing `chromedriver` file
 
+### Supported pages
+For now Pikator only supports Gumtree and [gumtree](https://www.gumtree.pl/) and [olx](https://www.olx.pl/).
+
 ## Preview 
 ![gumtree](https://user-images.githubusercontent.com/18220458/38557664-fcf0f29e-3ccd-11e8-9a49-74600039b971.png)
 <br/><br/><br/>
