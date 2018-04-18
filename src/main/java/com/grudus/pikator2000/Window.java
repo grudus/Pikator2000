@@ -7,12 +7,12 @@ import javafx.stage.Stage;
 
 import javax.swing.*;
 import java.io.File;
+import java.util.Objects;
 
 import static java.lang.System.setProperty;
 
 public class Window extends Application {
     private static final String CONFIG_FILE = "config.json";
-    private static final String DRIVER_FILE = "chromedriver";
 
     private MainScene scene;
 
@@ -33,18 +33,21 @@ public class Window extends Application {
 
     public static void main(String[] args) {
         try {
+            String driverFileName = DriverDetector.INSTANCE.detectFileName();
+            Objects.requireNonNull(driverFileName);
+
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-            assertFiles();
-            setProperty("webdriver.chrome.driver", new File(DRIVER_FILE).getAbsolutePath());
+            assertFiles(driverFileName);
+            setProperty("webdriver.chrome.driver", new File(driverFileName).getAbsolutePath());
             launch(args);
         } catch (Exception e) {
             System.exit(-1);
         }
     }
 
-    private static void assertFiles() throws Exception {
+    private static void assertFiles(String driverFile) throws Exception {
         assertFile(CONFIG_FILE);
-        assertFile(DRIVER_FILE);
+        assertFile(driverFile);
     }
 
     private static void assertFile(String path) throws Exception {
