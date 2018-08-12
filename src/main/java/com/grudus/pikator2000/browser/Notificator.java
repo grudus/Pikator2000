@@ -17,7 +17,7 @@ class Notificator {
     }
 
     public void notifyNewOffer() {
-        System.err.println("NEW ORDER NEW ORDER");
+        System.err.println("NEW OFFER NEW OFFER");
         AudioPlayer.player.start(stream);
     }
 }
