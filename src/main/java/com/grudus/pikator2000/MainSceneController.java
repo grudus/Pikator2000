@@ -4,6 +4,8 @@ import com.grudus.pikator2000.json.JsonIO;
 import com.grudus.pikator2000.json.Settings;
 import javafx.scene.control.TextArea;
 
+import java.util.List;
+
 import static java.lang.Integer.valueOf;
 
 class MainSceneController {
@@ -25,12 +27,12 @@ class MainSceneController {
         return jsonIO.read();
     }
 
-    void onSubmit(TextArea logger, String url, String seconds) {
+    void onSubmit(TextArea logger, List<String> urls, String seconds) {
         logger.setText("Init process...");
-        task = new RefresherTask(logger, getSecondsToRefresh(seconds), url);
+        task = new RefresherTask(logger, getSecondsToRefresh(seconds), urls);
         new Thread(task).start();
         logger.setText("Searching for offers...\n" + logger.getText());
-        updateSettings(url, seconds);
+        updateSettings(urls, seconds);
     }
 
 
@@ -40,9 +42,9 @@ class MainSceneController {
         logger.setText("Stopped\n" + logger.getText());
     }
 
-    private void updateSettings(String url, String seconds) {
+    private void updateSettings(List<String> urls, String seconds) {
         Settings settings = new Settings();
-        settings.setUrl(url);
+        settings.setUrls(urls);
         settings.setSeconds(getSecondsToRefresh(seconds));
         jsonIO.save(settings);
     }

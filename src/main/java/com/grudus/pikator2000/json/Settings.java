@@ -1,23 +1,25 @@
 package com.grudus.pikator2000.json;
 
+import java.util.List;
+
 public class Settings {
-    private String url;
+    private List<String> urls;
     private Integer seconds;
 
-    public Settings(String defaultUrl, int defaultRefresh) {
-        this.url = defaultUrl;
+    public Settings(List<String> defaultUrl, int defaultRefresh) {
+        this.urls = defaultUrl;
         this.seconds = defaultRefresh;
     }
 
     public Settings() {
     }
 
-    public String getUrl() {
-        return url;
+    public List<String> getUrls() {
+        return urls;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setUrls(List<String> urls) {
+        this.urls = urls;
     }
 
     public Integer getSeconds() {

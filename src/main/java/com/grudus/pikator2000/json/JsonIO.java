@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.IOException;
 
 import static com.grudus.pikator2000.RefresherTask.DEFAULT_REFRESH;
+import static java.util.Collections.singletonList;
 
 public class JsonIO {
     private final File file;
@@ -23,7 +24,7 @@ public class JsonIO {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return new Settings(WebDriverRefresher.DEFAULT_URL, DEFAULT_REFRESH);
+        return new Settings(singletonList(WebDriverRefresher.DEFAULT_URL), DEFAULT_REFRESH);
     }
 
     public void save(Settings settings) {
